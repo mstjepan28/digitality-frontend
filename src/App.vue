@@ -2,18 +2,10 @@
   <div id="app">
         <!-- navbar -->
         <nav v-if="this.$route.name !== 'Login' && this.$route.name !== 'Signup' " class="navbar navbar-expand-lg navbar-light bg-light border " >
-              <router-link to="/" class="navbar-brand" id="navbarDesktop">
-                <div class="logo-brand ">
-                   <img src="/Images/logo.png"/>
-                </div>
+              <router-link to="/">
+                  <img src="/Images/logo.png"/>
               </router-link> 
-              <!-- logo na mobitelu (kvalitetniji prikaz nego png) -->
-              <router-link to="/" class="navbar-brand" id="navbarMob">
-                <div class="logo-brand ">
-                  Digitality
-                </div>
-              </router-link> 
-            
+          
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -81,7 +73,6 @@ export default {
 }
 
 .navbar-brand{
-  font-family: BillabongW00-Regular;
   font-size:50px;
   letter-spacing: 0;
   opacity: 1;
@@ -103,6 +94,7 @@ export default {
 
 .navbar-light {
     background-color: white !important;
+    padding:0px;
 }
 
 /*
@@ -111,32 +103,4 @@ router-link:hover{
 } 
 */
 
-@media screen and (min-width: 1024px){
- #navbarMob{
-   display:none;
- }
-}
-
-/*###Tablet(medium)###*/
-@media screen and (min-width : 768px) and (max-width : 1023px){
-#navbarMob{
-   display:none;
- }
- 
-}
-
-/*### Smartphones (portrait and landscape)(small)### */
-@media screen and (min-width : 0px) and (max-width : 767px){
-  
-#navbarDesktop{
-   display:none;
- }
-
-#navbarMob{
-  padding-top: 0px;
-  padding-bottom: 10px;
-}
-
-
-}
 </style>
