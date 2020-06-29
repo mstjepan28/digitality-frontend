@@ -3,7 +3,7 @@
         <!-- navbar -->
         <nav v-if="this.$route.name !== 'Login' && this.$route.name !== 'Signup' " class="navbar navbar-expand-lg navbar-light bg-light border " >
               <router-link to="/">
-                  <img src="/Images/logo.png"/>
+                  <img src="/Images/logo.png" id="navbarImgLogo"/>
               </router-link> 
           
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,6 +70,21 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  
+}
+
+@font-face {font-family: "BillabongW00-Regular"; src: 
+url("//db.onlinewebfonts.com/t/6d32b8e06f40fb7698cfb714b9e7975d.eot"); 
+src: url("//db.onlinewebfonts.com/t/6d32b8e06f40fb7698cfb714b9e7975d.eot?#iefix") 
+format("embedded-opentype"), url("//db.onlinewebfonts.com/t/6d32b8e06f40fb7698cfb714b9e7975d.woff2") 
+format("woff2"), url("//db.onlinewebfonts.com/t/6d32b8e06f40fb7698cfb714b9e7975d.woff") 
+format("woff"), url("//db.onlinewebfonts.com/t/6d32b8e06f40fb7698cfb714b9e7975d.ttf") 
+format("truetype"), url("//db.onlinewebfonts.com/t/6d32b8e06f40fb7698cfb714b9e7975d.svg#BillabongW00-Regular") 
+format("svg"); }
+
+
+#navbarImgLogo{
+  font-family: "BillabongW00-Regular";
 }
 
 .navbar-brand{
