@@ -313,6 +313,7 @@ export default {
 
     //napravili, ali nema smisla pošto trenutno naši dokumenti nemaju naslova ili nekog drugog podatka u prikazu komponente(osim datuma kad je kreiran)
     async searchDocuments(pretraga){
+      console.log(this.tempDoc)
       if(this.searchTerm) {
         pretraga = this.searchTerm.toLowerCase()
         let regex = new RegExp (`^(${pretraga})`)
@@ -378,18 +379,11 @@ export default {
       }
     },
 
-/* 
-ne treba nam jer smo maknuli settings drodown pošto ga imamo u Home.vue
-    async closeSortDropdown(){
-      let sortby = ''
-      if(document.getElementById("defaultInline1").checked) sortby = 'datum_pregleda_silazno'
-      else if(document.getElementById("defaultInline2").checked) sortby = 'abecedno_silazno'
-      else if(document.getElementById("defaultInline3").checked) sortby = 'datum_pregleda_uzlazno'
-      else if(document.getElementById("defaultInline4").checked) sortby = 'abecedno_uzlazno'
-      let archives = await app.sort_Archives(sortby,this.user.archive_ids,this.store.currentArchiveData._id)
+    async changeArchiveName(){
+      await app.changeArchiveName(this.store.currentArchiveData._id,this.store.currentArchiveData.name)
+      let archives = await app.getArchives(this.user.email,this.user.archive_ids)
       localStorage.setItem('userArchives',JSON.stringify(archives))
-      this.store.updateCurrentUserArchive(archives)
-      $('#SortDropDown').trigger("click"); //https://stackoverflow.com/questions/10941540/how-to-hide-twitter-bootstrap-dropdown
+      $('#closeShareDropdownButton').trigger("click");
     },
 
     addingUserConfirmation(success){
@@ -404,8 +398,8 @@ ne treba nam jer smo maknuli settings drodown pošto ga imamo u Home.vue
     let archives = await app.getArchives(this.user.email,this.user.archive_ids)
     localStorage.setItem('userArchives',JSON.stringify(archives))
     $('#closeShareDropdownButton').trigger("click");
-  },
-*/
+   },
+
   },
 
   computed:{

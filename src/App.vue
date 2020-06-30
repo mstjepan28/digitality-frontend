@@ -43,8 +43,7 @@ import { Auth } from "@/services";
 export default {
   data(){
     return {
-      ...store,
-      auth: Auth.state
+      store,
     }
   },
 

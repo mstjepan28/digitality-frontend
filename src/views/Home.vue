@@ -169,24 +169,6 @@
             </div>
           </div>
 
-        <!-- Modal za kreiranje arhive -->
-        <div class="modal fade" id="createArchiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header" style="display:block;">
-                <h3 class="'col-12 modal-title text-center'" id="exampleModalLongTitle" style="color:#000000;">Kreiraj arhivu</h3>
-              </div>
-              <div class="modal-body">
-                <input v-model = "createArchiveName" placeholder="Unesite ime podarhive" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Unesite ime arhive'" style="border:none; color:#00A2FF; padding: 0 10px 0 10px; text-align:center;" />
-              </div>
-              <div class="modal-footer" style="text-align:center; display:block;">
-                <button type="button" class="btn btn-secondary"  data-toggle="modal" data-dismiss="modal" style="background-color:#00A2FF">Dodaj</button>
-                <button type="button" class="btn btn-secondary"  data-dismiss="modal" style="background-color:#00A2FF">Odustani</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
           <!-- create archive success confirmation -->
         <div class="modal fade" id="success_confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document" >
@@ -276,7 +258,6 @@ export default {
       searchTerm: '',
       store,
       createSubArchiveName: '',
-      createArchiveName: '',
       shared_email: '',
       userArchiveList:  JSON.parse(localStorage.getItem('userArchives')),
 
@@ -352,9 +333,14 @@ export default {
       else if(document.getElementById("defaultInline2").checked) sortby = 'abecedno_silazno'
       else if(document.getElementById("defaultInline3").checked) sortby = 'datum_pregleda_uzlazno'
       else if(document.getElementById("defaultInline4").checked) sortby = 'abecedno_uzlazno'
-      let archives = await app.sort_Archives(sortby,this.user.archive_ids,this.store.currentArchiveData._id)
-      localStorage.setItem('userArchives',JSON.stringify(archives))
-      this.store.updateCurrentUserArchive(archives)
+      let archive = await app.sort_Archives(sortby,this.store.currentArchiveData._id)
+      for(let i=0; i<this.userArchiveList.length; i++){
+        if(this.userArchiveList[i]._id == this.store.currentArchiveData._id){
+          this.userArchiveList[i] = archive
+          localStorage.setItem("userArchives", JSON.stringify(this.userArchiveList))
+        }
+      }
+      this.store.updateCurrentUserArchive(this.userArchiveList)
       $('#SortDropDown').trigger("click"); //https://stackoverflow.com/questions/10941540/how-to-hide-twitter-bootstrap-dropdown
     },
 

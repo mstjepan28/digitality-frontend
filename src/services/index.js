@@ -74,23 +74,6 @@ let Auth = {
     getUser() {
         return JSON.parse(localStorage.getItem('user'));
     },
-
-    authenticated() {
-        let user = Auth.getUser();
-        if (user && user.email) {
-            return true;
-        }
-        return false;
-    },
-
-    state: {
-        get user() {
-            return Auth.getUser();
-        },
-        get authenticated() {
-            return Auth.authenticated();
-        },
-    }
 }
 
 let app = {
@@ -144,10 +127,9 @@ let app = {
         })
     },
 
-    async sort_Archives(check_value,dostupne_arhive_korisniku,id_trenutne_arhive){
+    async sort_Archives(check_value,id_trenutne_arhive){
         let response = await Service.post('/archives/SortArchives', {
             sorttype: check_value,
-            archive_ids: dostupne_arhive_korisniku,
             currentArchive_id: id_trenutne_arhive
         })
         return response.data;
