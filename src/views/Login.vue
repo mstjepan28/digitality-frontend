@@ -84,7 +84,6 @@ export default {
     },
     
 }
-//popraviti: tri stupca na mobitelu i kompu drugaciji prikaz, dodati forgot password, popraviti za neke ekrane small tag se ne ponasa kako treba, staviti ikonu za brisanje maila?
 </script>
 
 <style scoped>

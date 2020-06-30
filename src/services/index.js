@@ -113,14 +113,15 @@ let app = {
         return response.data
     },
 
-    async getSearchArchives(pretraga, dostupne_arhive_korisniku, id_trenutne_arhive){
+    async getSearchSubArchives(pretraga, dostupne_podarhive_korisniku, id_trenutne_podarhive){
         let response = await Service.post('/search/lista_arhiva',{
             searchTerm : pretraga,
-            archive_ids: dostupne_arhive_korisniku,
-            currentArchive_id: id_trenutne_arhive
+            archive_ids: dostupne_podarhive_korisniku,
+            currentArchive_id: id_trenutne_podarhive
         })
         return response.data;
     },
+/* kreira se automatski pa nije potrebno
 
     async createSubarchive(naziv, id_korisnikove_arhive){
         await Service.post('/archives/createSubarchive', {
@@ -128,7 +129,7 @@ let app = {
             personal_archive_id : id_korisnikove_arhive
         })
     },
-
+*/
     async deleteSubarchive(id_korisnikove_arhive, id_podarhive){
         await Service.patch('/archive/deleteSubarchive', {
             personal_archive_id : id_korisnikove_arhive,

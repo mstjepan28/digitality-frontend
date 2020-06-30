@@ -126,7 +126,7 @@
                                             
                   </div>
                   <div class="addButtonDiv">
-                        <button type="submit" @click="closeSortDropdown()" class="btn btn-primary my-2 my-sm-0" id="sortButton"> Potvrdi </button>
+                        <button type="submit" @click="SortDropdown()" class="btn btn-primary my-2 my-sm-0" id="sortButton"> Potvrdi </button>
                   </div>
               </div>
               </div>
@@ -293,16 +293,16 @@ export default {
 
   watch: {
     "searchTerm": _.debounce(function(val) {
-      this.searchArchives(val);
+      this.searchSubArchives(val);
     }, 500)
   },
   
   methods:{
-    async searchArchives(pretraga){
+    async searchSubArchives(pretraga){
       pretraga = this.searchTerm
-      let archives = await app.getSearchArchives(pretraga, this.user.archive_ids,this.store.currentArchiveData._id)
-      localStorage.setItem('userArchives',JSON.stringify(archives))
-      this.store.updateCurrentUserArchive(archives)
+      let subArchives = await app.getSearchSubArchives(pretraga, this.user.archive_ids,this.store.currentArchiveData._id)
+      localStorage.setItem('userArchives',JSON.stringify(subArchives))
+      this.store.updateCurrentUserArchive(subArchives)
     },
 
     async changeArchiveName(){
@@ -316,6 +316,7 @@ export default {
       $('#closeShareDropdownButton').trigger("click");
     },
 
+/*
     async create_subArchive() {
       let flag = false
 
@@ -344,8 +345,8 @@ export default {
     add_archive_cancel() {
       this.createSubArchiveName = ''
     },
-  
-    async closeSortDropdown(){
+*/
+    async sortDropdown(){
       let sortby = ''
       if(document.getElementById("defaultInline1").checked) sortby = 'datum_pregleda_silazno'
       else if(document.getElementById("defaultInline2").checked) sortby = 'abecedno_silazno'

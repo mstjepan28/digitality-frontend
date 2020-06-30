@@ -79,7 +79,7 @@
                         </div>
         
                 </div>
-                <div class="row addButtonDiv">
+                <div class="row addButtonDiv" v-if="this.check_if_owner_of_archive">
                   <router-link v-bind:to="'/editdocument/' + this.current_document.id_dokumenta">
                     <button type="button" class="btn btn-primary my-2 my-sm-0" id="addButton" > Uredi </button>
                   </router-link>

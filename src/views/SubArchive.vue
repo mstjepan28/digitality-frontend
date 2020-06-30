@@ -172,7 +172,7 @@
                     <div class="modal-body" style="font-size: 30px; color:#00A2FF;">
                         Uspješno izbrisano
                         <hr/>
-                        <div v-on:click="delete_archive" data-dismiss="modal" style="font-size:20px; color:#707070">Ok</div>
+                        <div v-on:click="delete_subArchive" data-dismiss="modal" style="font-size:20px; color:#707070">Ok</div>
                     </div>
                 
                   </div>
@@ -286,6 +286,7 @@ export default {
       this.extract_documents()
     },
 
+    // by Stjepan
     filter_documents(){
       this.extract_documents()
       let filtered_docs = this.documentData
@@ -310,6 +311,7 @@ export default {
       this.documentData = filtered_docs
     },
 
+    //napravili, ali nema smisla pošto trenutno naši dokumenti nemaju naslova ili nekog drugog podatka u prikazu komponente(osim datuma kad je kreiran)
     async searchDocuments(pretraga){
       if(this.searchTerm) {
         pretraga = this.searchTerm.toLowerCase()
@@ -326,7 +328,7 @@ export default {
       }
     },
 
-    async delete_archive(){
+    async delete_subArchive(){
       let subarchive_id = ''
       for(let i = 0; i < this.store.currentArchiveData.subarchives.length; i++){
         if(this.store.currentArchiveData.subarchives[i].name == this.naziv){
@@ -376,20 +378,8 @@ export default {
       }
     },
 
-    async searchArchives(pretraga){
-      pretraga = this.searchTerm
-      let archives = await app.getSearchArchives(pretraga, this.user.archive_ids,this.store.currentArchiveData._id)
-      localStorage.setItem('userArchives',JSON.stringify(archives))
-      this.store.updateCurrentUserArchive(archives)
-    },
-
-    async changeArchiveName(){
-      await app.changeArchiveName(this.store.currentArchiveData._id,this.store.currentArchiveData.name)
-      let archives = await app.getArchives(this.user.email,this.user.archive_ids)
-      localStorage.setItem('userArchives',JSON.stringify(archives))
-      $('#closeShareDropdownButton').trigger("click");
-    },
-
+/* 
+ne treba nam jer smo maknuli settings drodown pošto ga imamo u Home.vue
     async closeSortDropdown(){
       let sortby = ''
       if(document.getElementById("defaultInline1").checked) sortby = 'datum_pregleda_silazno'
@@ -409,7 +399,13 @@ export default {
         $("#unsuccess_confirmation_adding_user").modal()
     },
 
-
+    async changeArchiveName(){
+    await app.changeArchiveName(this.store.currentArchiveData._id,this.store.currentArchiveData.name)
+    let archives = await app.getArchives(this.user.email,this.user.archive_ids)
+    localStorage.setItem('userArchives',JSON.stringify(archives))
+    $('#closeShareDropdownButton').trigger("click");
+  },
+*/
   },
 
   computed:{
