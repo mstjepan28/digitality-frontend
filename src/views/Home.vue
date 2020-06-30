@@ -290,7 +290,8 @@ export default {
       await app.changeArchiveName(this.store.currentArchiveData._id,this.store.currentArchiveData.name)
       let archives = await app.getArchives(this.user.email,this.user.archive_ids)
       localStorage.setItem('userArchives',JSON.stringify(archives))
-      $('#closeShareDropdownButton').trigger("click");
+      this.store.updateCurrentUserArchive(archives)
+      this.userArchiveList = archives
     },
 
     closeShareDropDown(){
@@ -327,7 +328,7 @@ export default {
       this.createSubArchiveName = ''
     },
 */
-    async sortDropdown(){
+    async SortDropdown(){
       let sortby = ''
       if(document.getElementById("defaultInline1").checked) sortby = 'datum_pregleda_silazno'
       else if(document.getElementById("defaultInline2").checked) sortby = 'abecedno_silazno'
