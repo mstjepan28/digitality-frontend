@@ -311,6 +311,7 @@ export default {
     },
 
     async searchDocuments(pretraga){
+      console.log(this.tempDoc)
       if(this.searchTerm) {
         pretraga = this.searchTerm.toLowerCase()
         let regex = new RegExp (`^(${pretraga})`)
@@ -374,13 +375,6 @@ export default {
         this.shared_email = ''
         this.addingUserConfirmation(success);
       }
-    },
-
-    async searchArchives(pretraga){
-      pretraga = this.searchTerm
-      let archives = await app.getSearchArchives(pretraga, this.user.archive_ids,this.store.currentArchiveData._id)
-      localStorage.setItem('userArchives',JSON.stringify(archives))
-      this.store.updateCurrentUserArchive(archives)
     },
 
     async changeArchiveName(){

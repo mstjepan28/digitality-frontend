@@ -158,8 +158,7 @@ export default {
     }
   },
   mounted(){
-    let temp = JSON.parse(localStorage.getItem('userArchives'))
-    this.store.currentArchiveData = this.store.get_users_arhive(temp,this.user.archive_ids)
+    this.store.currentArchiveData = JSON.parse(localStorage.getItem('currentUserArchive'))
     for(let i = 0; i < this.store.currentArchiveData.subarchives.length; i++){
       for(let j = 0; j < this.store.currentArchiveData.subarchives[i].documents.length; j++){
         if(this.document_id == this.store.currentArchiveData.subarchives[i].documents[j].id_dokumenta){
