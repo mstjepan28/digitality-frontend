@@ -312,23 +312,27 @@ export default {
     },
 
     //napravili, ali nema smisla pošto trenutno naši dokumenti nemaju naslova ili nekog drugog podatka u prikazu komponente(osim datuma kad je kreiran)
-    async searchDocuments(pretraga){
-      console.log(this.tempDoc)
+    /*async searchDocuments(pretraga){
       if(this.searchTerm) {
         pretraga = this.searchTerm.toLowerCase()
         let regex = new RegExp (`^(${pretraga})`)
-        this.store.documentData = {}
+        let tempDoc = this.documentData
+        this.documentData = {}
+        let keys = Object.keys(tempDoc[0])
 
-        for(let i = 0; i < Object.keys(this.tempDoc).length; i++){
-          if(this.tempDoc[i].naziv.toLowerCase().match(regex)){
-            this.store.documentData[i] = this.tempDoc[i] 
+        for(let i = 0; i < tempDoc.length; i++){
+          for(let j = 0; j < keys.length; j++){
+            if(tempDoc.keys[j].toLowerCase().match(regex)){
+            this.documentData[i] = tempDoc[i] 
+            }
           }
         }
       } else {
-        this.store.documentData = this.tempDoc
+        this.extract_documents()
       }
     },
-
+    */
+   
     async delete_subArchive(){
       let subarchive_id = ''
       for(let i = 0; i < this.store.currentArchiveData.subarchives.length; i++){
