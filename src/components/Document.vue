@@ -41,7 +41,7 @@ export default {
   background-color: white;
   height: 15%;
   line-height: 50px;
-  font-size: 25px;
+  font-size: 19px;
   color: #707070;
 }
 
