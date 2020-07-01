@@ -80,7 +80,6 @@ export default {
       })
     },
 
-  //još urediti kod i funkcionalnost
   //https://vuejsexamples.com/vue-js-component-for-full-screen-loading-indicator/
     startLoading() {
       let loader = this.$loading.show({
@@ -111,26 +110,6 @@ export default {
 
                  
   },
-
-  myEventHandler(e) {
-      if(screen.width < 757){ 
-        this.placeholder = 'Choose a file';
-        console.log('manji')
-      }
-
-      else{
-        this.placeholder = 'Drag and drop your file here';
-        console.log('veci')
-      }
-    },
-
-  created() {
-    window.addEventListener("resize", this.myEventHandler);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.myEventHandler);
-  },
-
 
   mounted(){
     $('#successAlert').hide();
