@@ -59,7 +59,8 @@ export default {
       fullPage: true,
       myCroppa: null,
       placeholder: 'Drag and drop your file here',
-      store
+      store,
+      loader: null
       
     };
   },
@@ -82,7 +83,7 @@ export default {
 
   //https://vuejsexamples.com/vue-js-component-for-full-screen-loading-indicator/
     startLoading() {
-      let loader = this.$loading.show({
+        this.loader = this.$loading.show({
         // Optional parameters
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: true,
@@ -93,6 +94,7 @@ export default {
         loader.hide()
        },20000)                 
       },
+
       onCancel() {
         console.log('User cancelled the loader.')
     },
@@ -105,6 +107,7 @@ export default {
       let url_dokumenta = await result.ref.getDownloadURL();
       let temp = await app.sendDocument(url_dokumenta);
       localStorage.setItem('scan_doc_data',JSON.stringify(temp))
+      this.loader.hide()
       this.$router.push({ name: 'ManualScan' })
     },
 
