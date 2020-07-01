@@ -140,7 +140,7 @@ let app = {
         return response.data;
     },
 
-    async delete_shared_archive(eposta_share){
+    async delete_acces_from_shared_archive(eposta_share){
         let response = await Service.patch('/archives/shareDelete', {'foreign_email': eposta_share})
         return response.data
     },

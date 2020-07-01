@@ -351,7 +351,7 @@ export default {
         if(subarc.name == this.naziv) this.documentData = subarc.documents
       }) 
     },
-
+    /*
     addingUserConfirmation(success){
       if(success) $("#adding_user_success_confirmation").modal()
 
@@ -362,20 +362,23 @@ export default {
       $('#closeShareDropdownButton').trigger("click");
     },
 
-    async share_arc() {
-      if(this.shared_email != ''){
+    async share_arc(){
+      if(this.shared_email != '' && this.shared_email != this.user.email){
         let success = false
-        let result = await app.share_archive(this.user.email,this.shared_email)
+        let result = await app.share_archive(this.shared_email)
+        
         if(result){
-          this.user.archive_ids.push(result[0])
-          this.user.email_list.push(result[1])
-          localStorage.setItem("user",JSON.stringify(this.user))
-          let archives = await app.getArchives(this.user.email,this.user.archive_ids)
-          localStorage.setItem('userArchives',JSON.stringify(archives))
+          this.user.email_list.push(result)
+          localStorage.setItem("user", JSON.stringify(this.user))
+          
           success = true
         }
+
         this.shared_email = ''
         this.addingUserConfirmation(success);
+      }
+      else{
+        this.addingUserConfirmation(false);
       }
     },
 
@@ -384,22 +387,8 @@ export default {
       let archives = await app.getArchives(this.user.email,this.user.archive_ids)
       localStorage.setItem('userArchives',JSON.stringify(archives))
       $('#closeShareDropdownButton').trigger("click");
-    },
-
-    addingUserConfirmation(success){
-      if(success) 
-        $("#adding_user_success_confirmation").modal()
-      else 
-        $("#unsuccess_confirmation_adding_user").modal()
-    },
-
-    async changeArchiveName(){
-    await app.changeArchiveName(this.store.currentArchiveData._id,this.store.currentArchiveData.name)
-    let archives = await app.getArchives(this.user.email,this.user.archive_ids)
-    localStorage.setItem('userArchives',JSON.stringify(archives))
-    $('#closeShareDropdownButton').trigger("click");
-   },
-
+    }
+    */
   },
 
   computed:{
@@ -427,7 +416,6 @@ export default {
         await app.update_exDate(this.store.currentArchiveData._id, subarchive_name)
       }
     }
-
 
     //https://www.npmjs.com/package/vue-notification
     this.$notify({

@@ -9,7 +9,7 @@
                     <div id="settingsIcon" ><i class="fas fa-cog fa-lg"></i></div>
                   </button>
 
-                  <div v-if="this.check_if_owner_of_archive" class="dropdown-menu dropdown-menu-left menu-settings" @click.stop=''>
+                  <div class="dropdown-menu dropdown-menu-left menu-settings" @click.stop=''>
                     <div class="dropdownHeader" > 
                         <h2 id="dropdownHeaderHeadline"> Postavke </h2> 
                     </div>
@@ -19,7 +19,8 @@
                           <i class="far fa-edit"></i>
                         </div>
                         <div class="changeName" >
-                          <input v-model="store.currentArchiveData.name" id="changeNameHeader" style="color:#2c3e50;"/>
+                          <input v-if="this.check_if_owner_of_archive" v-model="store.currentArchiveData.name" id="changeNameHeader" style="color:#2c3e50;"/>
+                          <div v-else> {{ store.currentArchiveData.name}} </div>
                         </div>
                     </div>
 
