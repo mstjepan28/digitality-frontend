@@ -21,7 +21,7 @@ export default {
 
   methods:{
     async removeUserAccess(){
-      let result = await app.delete_shared_archive(this.info)
+      let result = await app.delete_acces_from_shared_archive(this.info)
       if(!result) return 
 
       let email_list = this.user.email_list;
